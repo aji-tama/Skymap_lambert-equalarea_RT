@@ -1,2 +1,2 @@
 # skymap_RT
-real time sky map at Hong Kong Observatory
+real time(updated every min) sky map at Hong Kong Observatory
