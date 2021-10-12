@@ -7,6 +7,7 @@ import requests
 import matplotlib
 matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
+import matplotlib.patheffects as pe
 import matplotlib.patches as patches
 from matplotlib import font_manager
 from matplotlib import collections as mc
@@ -587,15 +588,15 @@ def plot_constellation():
     for i in range(7):
         ax0.scatter(hori_xmin+shift_mag+i*10+5,hori_ymin+20, 5*(10**(-0.4*i))**0.5, c='white',alpha=plot_alpha,zorder=14+2.5)
         ax0.scatter(hori_xmin+shift_mag+i*10+5,hori_ymin+20, 5*(10**(-0.4*i))**0.5+20, c='k',zorder=13+2.5)
-        ax0.annotate(str(i),(hori_xmin+shift_mag+i*10+5,hori_ymin+2),ha='center',va='bottom',color='w',zorder=14+2.5)
-        ax0.annotate(str(i),(hori_xmin+shift_mag+i*10+5-1,hori_ymin+2+1),ha='center',va='bottom',color='k',zorder=13+2.5)
-        ax0.annotate(str(i),(hori_xmin+shift_mag+i*10+5,hori_ymin+2+1),ha='center',va='bottom',color='k',zorder=13+2.5)
-        ax0.annotate(str(i),(hori_xmin+shift_mag+i*10+5+1,hori_ymin+2+1),ha='center',va='bottom',color='k',zorder=13+2.5)
-        ax0.annotate(str(i),(hori_xmin+shift_mag+i*10+5-1,hori_ymin+2),ha='center',va='bottom',color='k',zorder=13+2.5)
-        ax0.annotate(str(i),(hori_xmin+shift_mag+i*10+5+1,hori_ymin+2),ha='center',va='bottom',color='k',zorder=13+2.5)
-        ax0.annotate(str(i),(hori_xmin+shift_mag+i*10+5-1,hori_ymin+2-1),ha='center',va='bottom',color='k',zorder=13+2.5)
-        ax0.annotate(str(i),(hori_xmin+shift_mag+i*10+5,hori_ymin+2-1),ha='center',va='bottom',color='k',zorder=13+2.5)
-        ax0.annotate(str(i),(hori_xmin+shift_mag+i*10+5+1,hori_ymin+2-1),ha='center',va='bottom',color='k',zorder=13+2.5)
+        ax0.annotate(str(i),(hori_xmin+shift_mag+i*10+5,hori_ymin+2),ha='center',va='bottom',color='w',path_effects=[pe.withStroke(linewidth=4,foreground='k')],zorder=14+2.5)
+##        ax0.annotate(str(i),(hori_xmin+shift_mag+i*10+5-1,hori_ymin+2+1),ha='center',va='bottom',color='k',zorder=13+2.5)
+##        ax0.annotate(str(i),(hori_xmin+shift_mag+i*10+5,hori_ymin+2+1),ha='center',va='bottom',color='k',zorder=13+2.5)
+##        ax0.annotate(str(i),(hori_xmin+shift_mag+i*10+5+1,hori_ymin+2+1),ha='center',va='bottom',color='k',zorder=13+2.5)
+##        ax0.annotate(str(i),(hori_xmin+shift_mag+i*10+5-1,hori_ymin+2),ha='center',va='bottom',color='k',zorder=13+2.5)
+##        ax0.annotate(str(i),(hori_xmin+shift_mag+i*10+5+1,hori_ymin+2),ha='center',va='bottom',color='k',zorder=13+2.5)
+##        ax0.annotate(str(i),(hori_xmin+shift_mag+i*10+5-1,hori_ymin+2-1),ha='center',va='bottom',color='k',zorder=13+2.5)
+##        ax0.annotate(str(i),(hori_xmin+shift_mag+i*10+5,hori_ymin+2-1),ha='center',va='bottom',color='k',zorder=13+2.5)
+##        ax0.annotate(str(i),(hori_xmin+shift_mag+i*10+5+1,hori_ymin+2-1),ha='center',va='bottom',color='k',zorder=13+2.5)
 
     And_line = [[0,3],[1,3],[1,7],[1,9],[2,9],[3,13],[3,14],[5,10],[7,18],[8,14],[10,19],[11,18],[16,19],[13,16]]
     Ant_line = [[0,2],[0,3],[1,3]]        
@@ -764,45 +765,45 @@ def plot_constellation():
     for x,y,z,n,c in constellation_line:
         if math.hypot(numpy.mean(x),numpy.mean(y)) < hori_border/2 and max(x)-min(x) < hori_border:
             if n in set(['$\u2652$','$\u2648$','$\u264B$','$\u2651$','$\u264A$','$\u264C$','$\u264E$','$\u2653$','$\u2650$','$\u264F$','$\u2649$','$\u264D$']):
-                ax0.annotate(str(n),(numpy.mean(x),numpy.mean(y)-labelxy),horizontalalignment='center',alpha=0.75,color='y',zorder=9+2.5)
-                ax0.annotate(str(c),(numpy.mean(x),numpy.mean(y)-labelxy-12),fontproperties=chara_chi,ha='center',alpha=0.75,color='y',zorder=9+2.5)
-                #outline
-                ax0.annotate(str(n),(numpy.mean(x)+olw,numpy.mean(y)-labelxy-olw),horizontalalignment='center',alpha=0.75,color='k',zorder=8+2.5)
-                ax0.annotate(str(n),(numpy.mean(x)+olw,numpy.mean(y)-labelxy),horizontalalignment='center',alpha=0.75,color='k',zorder=8+2.5)
-                ax0.annotate(str(n),(numpy.mean(x)+olw,numpy.mean(y)-labelxy+olw),horizontalalignment='center',alpha=0.75,color='k',zorder=8+2.5)
-                ax0.annotate(str(n),(numpy.mean(x),numpy.mean(y)-labelxy-olw),horizontalalignment='center',alpha=0.75,color='k',zorder=8+2.5)
-                ax0.annotate(str(n),(numpy.mean(x),numpy.mean(y)-labelxy+olw),horizontalalignment='center',alpha=0.75,color='k',zorder=8+2.5)
-                ax0.annotate(str(n),(numpy.mean(x)-olw,numpy.mean(y)-labelxy-olw),horizontalalignment='center',alpha=0.75,color='k',zorder=8+2.5)
-                ax0.annotate(str(n),(numpy.mean(x)-olw,numpy.mean(y)-labelxy),horizontalalignment='center',alpha=0.75,color='k',zorder=8+2.5)
-                ax0.annotate(str(n),(numpy.mean(x)-olw,numpy.mean(y)-labelxy+olw),horizontalalignment='center',alpha=0.75,color='k',zorder=8+2.5)
-                ax0.annotate(str(c),(numpy.mean(x)+olw,numpy.mean(y)-labelxy-12-olw),fontproperties=chara_chi,ha='center',alpha=0.75,color='k',zorder=8+2.5)
-                ax0.annotate(str(c),(numpy.mean(x)+olw,numpy.mean(y)-labelxy-12),fontproperties=chara_chi,ha='center',alpha=0.75,color='k',zorder=8+2.5)
-                ax0.annotate(str(c),(numpy.mean(x)+olw,numpy.mean(y)-labelxy-12+olw),fontproperties=chara_chi,ha='center',alpha=0.75,color='k',zorder=8+2.5)
-                ax0.annotate(str(c),(numpy.mean(x),numpy.mean(y)-labelxy-12-olw),fontproperties=chara_chi,ha='center',alpha=0.75,color='k',zorder=8+2.5)
-                ax0.annotate(str(c),(numpy.mean(x),numpy.mean(y)-labelxy-12+olw),fontproperties=chara_chi,ha='center',alpha=0.75,color='k',zorder=8+2.5)
-                ax0.annotate(str(c),(numpy.mean(x)-olw,numpy.mean(y)-labelxy-12-olw),fontproperties=chara_chi,ha='center',alpha=0.75,color='k',zorder=8+2.5)
-                ax0.annotate(str(c),(numpy.mean(x)-olw,numpy.mean(y)-labelxy-12),fontproperties=chara_chi,ha='center',alpha=0.75,color='k',zorder=8+2.5)
-                ax0.annotate(str(c),(numpy.mean(x)-olw,numpy.mean(y)-labelxy-12+olw),fontproperties=chara_chi,ha='center',alpha=0.75,color='k',zorder=8+2.5)
+                ax0.annotate(str(n),(numpy.mean(x),numpy.mean(y)-labelxy),horizontalalignment='center',alpha=0.75,color='y',path_effects=[pe.withStroke(linewidth=4,foreground='k',alpha=0.75)],zorder=9+2.5)
+                ax0.annotate(str(c),(numpy.mean(x),numpy.mean(y)-labelxy-12),fontproperties=chara_chi,ha='center',alpha=0.75,color='y',path_effects=[pe.withStroke(linewidth=4,foreground='k',alpha=0.75)],zorder=9+2.5)
+##                #outline
+##                ax0.annotate(str(n),(numpy.mean(x)+olw,numpy.mean(y)-labelxy-olw),horizontalalignment='center',alpha=0.75,color='k',zorder=8+2.5)
+##                ax0.annotate(str(n),(numpy.mean(x)+olw,numpy.mean(y)-labelxy),horizontalalignment='center',alpha=0.75,color='k',zorder=8+2.5)
+##                ax0.annotate(str(n),(numpy.mean(x)+olw,numpy.mean(y)-labelxy+olw),horizontalalignment='center',alpha=0.75,color='k',zorder=8+2.5)
+##                ax0.annotate(str(n),(numpy.mean(x),numpy.mean(y)-labelxy-olw),horizontalalignment='center',alpha=0.75,color='k',zorder=8+2.5)
+##                ax0.annotate(str(n),(numpy.mean(x),numpy.mean(y)-labelxy+olw),horizontalalignment='center',alpha=0.75,color='k',zorder=8+2.5)
+##                ax0.annotate(str(n),(numpy.mean(x)-olw,numpy.mean(y)-labelxy-olw),horizontalalignment='center',alpha=0.75,color='k',zorder=8+2.5)
+##                ax0.annotate(str(n),(numpy.mean(x)-olw,numpy.mean(y)-labelxy),horizontalalignment='center',alpha=0.75,color='k',zorder=8+2.5)
+##                ax0.annotate(str(n),(numpy.mean(x)-olw,numpy.mean(y)-labelxy+olw),horizontalalignment='center',alpha=0.75,color='k',zorder=8+2.5)
+##                ax0.annotate(str(c),(numpy.mean(x)+olw,numpy.mean(y)-labelxy-12-olw),fontproperties=chara_chi,ha='center',alpha=0.75,color='k',zorder=8+2.5)
+##                ax0.annotate(str(c),(numpy.mean(x)+olw,numpy.mean(y)-labelxy-12),fontproperties=chara_chi,ha='center',alpha=0.75,color='k',zorder=8+2.5)
+##                ax0.annotate(str(c),(numpy.mean(x)+olw,numpy.mean(y)-labelxy-12+olw),fontproperties=chara_chi,ha='center',alpha=0.75,color='k',zorder=8+2.5)
+##                ax0.annotate(str(c),(numpy.mean(x),numpy.mean(y)-labelxy-12-olw),fontproperties=chara_chi,ha='center',alpha=0.75,color='k',zorder=8+2.5)
+##                ax0.annotate(str(c),(numpy.mean(x),numpy.mean(y)-labelxy-12+olw),fontproperties=chara_chi,ha='center',alpha=0.75,color='k',zorder=8+2.5)
+##                ax0.annotate(str(c),(numpy.mean(x)-olw,numpy.mean(y)-labelxy-12-olw),fontproperties=chara_chi,ha='center',alpha=0.75,color='k',zorder=8+2.5)
+##                ax0.annotate(str(c),(numpy.mean(x)-olw,numpy.mean(y)-labelxy-12),fontproperties=chara_chi,ha='center',alpha=0.75,color='k',zorder=8+2.5)
+##                ax0.annotate(str(c),(numpy.mean(x)-olw,numpy.mean(y)-labelxy-12+olw),fontproperties=chara_chi,ha='center',alpha=0.75,color='k',zorder=8+2.5)
             else:
-                ax0.annotate(str(n),(numpy.mean(x),numpy.mean(y)-labelxy),horizontalalignment='center',alpha=0.75,color='w',zorder=9+2.5)
-                ax0.annotate(str(c),(numpy.mean(x),numpy.mean(y)-labelxy-12),fontproperties=chara_chi,ha='center',alpha=0.75,color='w',zorder=9+2.5)
-                #outline
-                ax0.annotate(str(n),(numpy.mean(x)+olw,numpy.mean(y)-labelxy-olw),horizontalalignment='center',alpha=0.75,color='k',zorder=8+2.5)
-                ax0.annotate(str(n),(numpy.mean(x)+olw,numpy.mean(y)-labelxy),horizontalalignment='center',alpha=0.75,color='k',zorder=8+2.5)
-                ax0.annotate(str(n),(numpy.mean(x)+olw,numpy.mean(y)-labelxy+olw),horizontalalignment='center',alpha=0.75,color='k',zorder=8+2.5)
-                ax0.annotate(str(n),(numpy.mean(x),numpy.mean(y)-labelxy-olw),horizontalalignment='center',alpha=0.75,color='k',zorder=8+2.5)
-                ax0.annotate(str(n),(numpy.mean(x),numpy.mean(y)-labelxy+olw),horizontalalignment='center',alpha=0.75,color='k',zorder=8+2.5)
-                ax0.annotate(str(n),(numpy.mean(x)-olw,numpy.mean(y)-labelxy-olw),horizontalalignment='center',alpha=0.75,color='k',zorder=8+2.5)
-                ax0.annotate(str(n),(numpy.mean(x)-olw,numpy.mean(y)-labelxy),horizontalalignment='center',alpha=0.75,color='k',zorder=8+2.5)
-                ax0.annotate(str(n),(numpy.mean(x)-olw,numpy.mean(y)-labelxy+olw),horizontalalignment='center',alpha=0.75,color='k',zorder=8+2.5)
-                ax0.annotate(str(c),(numpy.mean(x)+olw,numpy.mean(y)-labelxy-12-olw),fontproperties=chara_chi,ha='center',alpha=0.75,color='k',zorder=8+2.5)
-                ax0.annotate(str(c),(numpy.mean(x)+olw,numpy.mean(y)-labelxy-12),fontproperties=chara_chi,ha='center',alpha=0.75,color='k',zorder=8+2.5)
-                ax0.annotate(str(c),(numpy.mean(x)+olw,numpy.mean(y)-labelxy-12+olw),fontproperties=chara_chi,ha='center',alpha=0.75,color='k',zorder=8+2.5)
-                ax0.annotate(str(c),(numpy.mean(x),numpy.mean(y)-labelxy-12-olw),fontproperties=chara_chi,ha='center',alpha=0.75,color='k',zorder=8+2.5)
-                ax0.annotate(str(c),(numpy.mean(x),numpy.mean(y)-labelxy-12+olw),fontproperties=chara_chi,ha='center',alpha=0.75,color='k',zorder=8+2.5)
-                ax0.annotate(str(c),(numpy.mean(x)-olw,numpy.mean(y)-labelxy-12-olw),fontproperties=chara_chi,ha='center',alpha=0.75,color='k',zorder=8+2.5)
-                ax0.annotate(str(c),(numpy.mean(x)-olw,numpy.mean(y)-labelxy-12),fontproperties=chara_chi,ha='center',alpha=0.75,color='k',zorder=8+2.5)
-                ax0.annotate(str(c),(numpy.mean(x)-olw,numpy.mean(y)-labelxy-12+olw),fontproperties=chara_chi,ha='center',alpha=0.75,color='k',zorder=8+2.5)
+                ax0.annotate(str(n),(numpy.mean(x),numpy.mean(y)-labelxy),horizontalalignment='center',alpha=0.75,color='w',path_effects=[pe.withStroke(linewidth=4,foreground='k',alpha=0.75)],zorder=9+2.5)
+                ax0.annotate(str(c),(numpy.mean(x),numpy.mean(y)-labelxy-12),fontproperties=chara_chi,ha='center',alpha=0.75,color='w',path_effects=[pe.withStroke(linewidth=4,foreground='k',alpha=0.75)],zorder=9+2.5)
+##                #outline
+##                ax0.annotate(str(n),(numpy.mean(x)+olw,numpy.mean(y)-labelxy-olw),horizontalalignment='center',alpha=0.75,color='k',zorder=8+2.5)
+##                ax0.annotate(str(n),(numpy.mean(x)+olw,numpy.mean(y)-labelxy),horizontalalignment='center',alpha=0.75,color='k',zorder=8+2.5)
+##                ax0.annotate(str(n),(numpy.mean(x)+olw,numpy.mean(y)-labelxy+olw),horizontalalignment='center',alpha=0.75,color='k',zorder=8+2.5)
+##                ax0.annotate(str(n),(numpy.mean(x),numpy.mean(y)-labelxy-olw),horizontalalignment='center',alpha=0.75,color='k',zorder=8+2.5)
+##                ax0.annotate(str(n),(numpy.mean(x),numpy.mean(y)-labelxy+olw),horizontalalignment='center',alpha=0.75,color='k',zorder=8+2.5)
+##                ax0.annotate(str(n),(numpy.mean(x)-olw,numpy.mean(y)-labelxy-olw),horizontalalignment='center',alpha=0.75,color='k',zorder=8+2.5)
+##                ax0.annotate(str(n),(numpy.mean(x)-olw,numpy.mean(y)-labelxy),horizontalalignment='center',alpha=0.75,color='k',zorder=8+2.5)
+##                ax0.annotate(str(n),(numpy.mean(x)-olw,numpy.mean(y)-labelxy+olw),horizontalalignment='center',alpha=0.75,color='k',zorder=8+2.5)
+##                ax0.annotate(str(c),(numpy.mean(x)+olw,numpy.mean(y)-labelxy-12-olw),fontproperties=chara_chi,ha='center',alpha=0.75,color='k',zorder=8+2.5)
+##                ax0.annotate(str(c),(numpy.mean(x)+olw,numpy.mean(y)-labelxy-12),fontproperties=chara_chi,ha='center',alpha=0.75,color='k',zorder=8+2.5)
+##                ax0.annotate(str(c),(numpy.mean(x)+olw,numpy.mean(y)-labelxy-12+olw),fontproperties=chara_chi,ha='center',alpha=0.75,color='k',zorder=8+2.5)
+##                ax0.annotate(str(c),(numpy.mean(x),numpy.mean(y)-labelxy-12-olw),fontproperties=chara_chi,ha='center',alpha=0.75,color='k',zorder=8+2.5)
+##                ax0.annotate(str(c),(numpy.mean(x),numpy.mean(y)-labelxy-12+olw),fontproperties=chara_chi,ha='center',alpha=0.75,color='k',zorder=8+2.5)
+##                ax0.annotate(str(c),(numpy.mean(x)-olw,numpy.mean(y)-labelxy-12-olw),fontproperties=chara_chi,ha='center',alpha=0.75,color='k',zorder=8+2.5)
+##                ax0.annotate(str(c),(numpy.mean(x)-olw,numpy.mean(y)-labelxy-12),fontproperties=chara_chi,ha='center',alpha=0.75,color='k',zorder=8+2.5)
+##                ax0.annotate(str(c),(numpy.mean(x)-olw,numpy.mean(y)-labelxy-12+olw),fontproperties=chara_chi,ha='center',alpha=0.75,color='k',zorder=8+2.5)
 
     if debug_mode == 1:
         timelog('ref count constellation_list: '+str(sys.getrefcount(constellation_list)))
