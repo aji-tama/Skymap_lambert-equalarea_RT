@@ -120,8 +120,8 @@ elif platform == 'linux':
     DjV_S_10    = font_manager.FontProperties(fname = '/usr/local/share/fonts/DejaVuSans.ttf', size=10)
     DjV_S_12    = font_manager.FontProperties(fname = '/usr/local/share/fonts/DejaVuSans.ttf', size=12)
     #emoji_20    = font_manager.FontProperties(fname = '/usr/local/share/fonts/YuGothB.ttc', size=20)
-    chara_chi   = font_manager.FontProperties(fname = '/Library/Fonts/SIMHEI.TTF')
-    chara_chi_16= font_manager.FontProperties(fname = '/Library/Fonts/SIMHEI.TTF', size=16)
+    chara_chi   = font_manager.FontProperties(fname = '/home/pi/.local/share/fonts/Unknown Vendor/TrueType/SimHei/SimHei_Normal.TTF')
+    chara_chi_16= font_manager.FontProperties(fname = '/home/pi/.local/share/fonts/Unknown Vendor/TrueType/SimHei/SimHei_Normal.TTF', size=16)
 # raw data
 horizon     = pandas.DataFrame(0,index=range(360),columns=['RA','Dec','x','y']).apply(pandas.to_numeric)
 twlight     = pandas.DataFrame(0,index=range(360),columns=['RA','Dec','x','y']).apply(pandas.to_numeric)
